@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import ProductCard from "./components/ProductCard";
+import { connect } from "react-redux";
+import { setProducts } from "./actionCreators";
 
 class App extends Component {
   state = {
@@ -13,7 +15,7 @@ class App extends Component {
         return response.json();
       })
       .then(data => {
-        this.setState({ products: data });
+        this.props.setProducts({ products: data });
       });
   }
 
@@ -24,7 +26,7 @@ class App extends Component {
           <h1 className="App-title">Shopping Cart</h1>
         </header>
         <div>
-          {this.state.products.map(product => (
+          {this.props.products.map(product => (
             <ProductCard {...product} key={product.id} />
           ))}
         </div>
@@ -33,4 +35,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({ products: state.products });
+const mapDispatchToProps = dispatch => ({
+  setProducts(products) {
+    dispatch(setProducts(products));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
