@@ -2,7 +2,15 @@ import React from "react";
 import { UncontrolledCarousel, Badge } from "reactstrap";
 import AddToCart from "./AddToCart";
 
-const ProductDetails = ({ title, description, price, images, reviews, inStock }) => {
+const ProductDetails = props => {
+  let { title, description, price, images, reviews, inStock } = {
+    title: "title",
+    description: "description",
+    price: 10,
+    images: ["https://unsplash.it/400/300?image=0"],
+    reviews: [{ title: "Meh", body: "This product is OK. It'll have to do.", author: "Some Person", rating: 3 }],
+    inStock: true
+  };
   const items = images.map((image, index) => ({
     src: image,
     altText: `Image ${index}`,
