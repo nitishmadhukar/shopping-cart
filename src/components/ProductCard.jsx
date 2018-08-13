@@ -15,7 +15,7 @@ const ProductCard = props => {
           </CardTitle>
           <CardText>
             <span>Price: ${price}</span>
-            <AddToCart {...props} />
+            <AddToCart />
           </CardText>
         </CardBody>
       </Card>

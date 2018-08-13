@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import ProductCard from "./components/ProductCard";
+import ProductsContainer from "./containers/ProductsContainer";
 import { connect } from "react-redux";
 import { setProducts } from "./actionCreators";
 
@@ -26,16 +26,13 @@ class App extends Component {
           <h1 className="App-title">Shopping Cart</h1>
         </header>
         <div>
-          {this.props.products.map(product => (
-            <ProductCard {...product} key={product.id} />
-          ))}
+          <ProductsContainer />
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ products: state.products });
 const mapDispatchToProps = dispatch => ({
   setProducts(products) {
     dispatch(setProducts(products));
@@ -43,6 +40,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(App);

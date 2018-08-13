@@ -3,9 +3,7 @@ import { UncontrolledCarousel, Badge } from "reactstrap";
 import AddToCart from "./AddToCart";
 import { connect } from "react-redux";
 
-const ProductDetails = props => {
-  const { title, description, price, images, reviews, inStock } = props.product;
-
+const ProductDetails = ({ title, description, price, images, reviews, inStock }) => {
   const items = images.map((image, index) => ({
     src: image,
     altText: `Image ${index}`,
@@ -39,11 +37,4 @@ const ProductDetails = props => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  product: state.products.find(product => product.id === ownProps.match.params.id)
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(ProductDetails);
+export default ProductDetails;
